@@ -827,12 +827,18 @@
                 const inputs = category.querySelectorAll('input[type="number"]');
                 currentPrices[type] = [];
                 inputs.forEach((input, index) => {
-                    const max = index < inputs.length - 1 ? 
-                        parseInt(input.getAttribute('data-max')) : 
-                        Infinity;
+                    let max;
+                    if (index < inputs.length - 1) {
+                        // Para intervalos normais, pega do data-max
+                        max = parseInt(input.getAttribute('data-max')) || 
+                              (currentPrices[type] && currentPrices[type][index] ? currentPrices[type][index].max : 200);
+                    } else {
+                        // Último intervalo é sempre infinito
+                        max = Infinity;
+                    }
                     currentPrices[type].push({
                         max: max,
-                        price: parseFloat(input.value)
+                        price: parseFloat(input.value) || 0
                     });
                 });
             });
@@ -1099,11 +1105,22 @@
 
         function calcularPreco(qtd, type) {
             if (!currentPrices[type]) return 0;
-            for (const range of currentPrices[type]) {
-                if (qtd <= range.max) {
+            
+            // Ordena os intervalos por max (apenas para segurança)
+            const ranges = [...currentPrices[type]].sort((a, b) => a.max - b.max);
+            
+            // Procura o intervalo correto
+            for (const range of ranges) {
+                if (qtd <= range.max || range.max === Infinity) {
                     return range.price;
                 }
             }
+            
+            // Se não encontrou, retorna o preço do último intervalo
+            if (ranges.length > 0) {
+                return ranges[ranges.length - 1].price;
+            }
+            
             return 0;
         }
 
@@ -1154,28 +1171,43 @@
         function atualizarTotal() {
             const quantidadeInput = document.getElementById('quantidade');
             let quantidade = Number(quantidadeInput.value);
-            if (quantidade < 1) {
+            
+            // Verifica se é um número válido
+            if (isNaN(quantidade) || quantidade < 1) {
                 alert('A quantidade mínima de impressões/cópias é 1.');
                 quantidadeInput.value = 1;
                 quantidade = 1;
             }
+            
+            // Limita a quantidade para evitar problemas com números muito grandes
+            if (quantidade > 9999999) {
+                alert('Quantidade muito grande. Por favor, entre em contato para orçamentos com mais de 10 milhões de páginas.');
+                quantidadeInput.value = 10000000;
+                quantidade = 10000000;
+            }
+            
             if (frenteVersoAtivo && quantidade < 2) {
                 alert('Ao selecionar Frente e Verso, a quantidade mínima é 2.');
                 quantidadeInput.value = 2;
                 quantidade = 2;
             }
+            
             let folhas = frenteVersoAtivo ? Math.ceil(quantidade / 2) : quantidade;
             let valorUnitario = tipoSelecionado ? calcularPreco(quantidade, tipoSelecionado) : 0;
             let totalImpressao = valorUnitario * quantidade;
+            
             if (frenteVersoAtivo) {
                 const discount = currentSettings.frenteVersoDiscount / 100;
                 totalImpressao *= (1 - discount);
             }
+            
             let custoEncadernacao = 0;
             if (encadernacaoAtivo) {
                 custoEncadernacao = calcularEncadernacao(folhas);
             }
+            
             const total = totalImpressao + custoEncadernacao;
+            
             document.getElementById('resultadoQuantidade').innerText = quantidade;
             document.getElementById('resultadoTipo').innerText = tipoSelecionado ? 
                 document.querySelector(`.button-group-material button.active`)?.innerText : 'Não selecionado';
@@ -1185,9 +1217,11 @@
             document.getElementById('resultadoTotal').innerHTML = tipoSelecionado ? 
                 `<span class="destaque-total"><span class="emoji">✅</span> R$ ${total.toFixed(2)} <span class="emoji">✅</span></span>` : 
                 `<span class="destaque-total"><span class="emoji">⚠️</span> Selecione um tipo <span class="emoji">⚠️</span></span>`;
+            
             document.getElementById('resultado').style.display = 'block';
             document.getElementById('observacoes').style.display = 'block';
             document.getElementById('btnCopiar').style.display = tipoSelecionado ? 'block' : 'none';
+            
             if (tipoSelecionado) {
                 atualizarObservacoes(tipoSelecionado);
             } else {
@@ -1226,4 +1260,3 @@
     </script>
 </body>
 </html>
-
