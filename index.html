@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Impressões & Cópias</title>
     <link rel="icon" type="image/png" href="logo.png">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -16,7 +16,7 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #1A1A1D, #141414);
+            background: #0a0a0a;
             color: #333;
             display: flex;
             flex-direction: column;
@@ -38,40 +38,47 @@
             height: auto;
             display: block;
             margin: 0 auto;
+            filter: brightness(1.1);
         }
 
         .container {
             display: flex;
             flex-direction: row;
-            gap: 20px;
+            gap: 25px;
             justify-content: center;
             align-items: flex-start;
             width: 100%;
-            max-width: 900px;
+            max-width: 950px;
         }
 
         .form-section, .result-section {
-            background: white;
-            padding: 20px;
+            background: #1a1a1a;
+            padding: 25px;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 40px rgba(255, 107, 0, 0.15);
             width: 100%;
             animation: fadeIn 0.5s ease-in-out;
+            border: 1px solid rgba(255, 107, 0, 0.15);
         }
 
         h1 {
             text-align: center;
-            color: #1a1a1a;
+            color: #ffffff;
             font-size: 1.8rem;
             margin-bottom: 15px;
-            font-weight: 600;
+            font-weight: 700;
+        }
+
+        h1 i {
+            color: #FF6B00;
+            margin-right: 10px;
         }
 
         h2 {
             text-align: center;
-            color: #555;
-            font-size: 1.2rem;
-            margin: 10px 0;
+            color: #cccccc;
+            font-size: 1.1rem;
+            margin: 12px 0;
             font-weight: 500;
         }
 
@@ -79,23 +86,30 @@
             display: block;
             margin-top: 10px;
             font-weight: 500;
-            color: #555;
+            color: #cccccc;
             font-size: 0.9rem;
         }
 
         input[type="number"] {
             width: 100%;
-            padding: 10px;
+            padding: 12px 15px;
             margin: 8px 0 15px 0;
-            border: 2px solid #ddd;
-            border-radius: 10px;
-            font-size: 0.9rem;
-            transition: border-color 0.3s ease;
+            border: 2px solid #333;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            background: #0d0d0d;
+            color: #fff;
         }
 
         input[type="number"]:focus {
-            border-color: #1a1a1a;
+            border-color: #FF6B00;
             outline: none;
+            box-shadow: 0 0 20px rgba(255, 107, 0, 0.15);
+        }
+
+        input[type="number"]::placeholder {
+            color: #555;
         }
 
         .button-group-material, .button-group {
@@ -108,34 +122,37 @@
 
         .button-group-material button, .button-group button {
             flex: 1;
-            padding: 12px;
-            border: none;
-            border-radius: 10px;
+            padding: 12px 16px;
+            border: 2px solid #333;
+            border-radius: 12px;
             cursor: pointer;
-            font-size: 0.9rem;
-            font-weight: 500;
+            font-size: 0.85rem;
+            font-weight: 600;
             transition: all 0.3s ease;
-            min-width: 150px;
-            background: linear-gradient(135deg, #F0833A, #FF7034);
-            color: #ddd;
+            min-width: 140px;
+            background: #0d0d0d;
+            color: #aaa;
             position: relative;
             overflow: hidden;
             touch-action: manipulation;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .button-group-material button {
-            height: 50px;
+            height: 52px;
         }
 
         .button-group button {
-            height: 45px;
+            height: 48px;
         }
 
         .button-group-material button.active {
-            background: linear-gradient(135deg, #1a0700, #030100);
-            color: white;
-            transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(76, 175, 80, 0.5);
+            background: #FF6B00;
+            color: #fff;
+            border-color: #FF6B00;
+            transform: scale(1.03);
+            box-shadow: 0 0 30px rgba(255, 107, 0, 0.3);
         }
 
         .button-group-material button.active::after {
@@ -148,105 +165,198 @@
             background: linear-gradient(
                 90deg,
                 transparent,
-                rgba(255, 255, 255, 0.2),
+                rgba(255, 255, 255, 0.15),
                 transparent
             );
             animation: shine 1.5s infinite;
         }
 
         .button-group-material button:hover:not(.active) {
-            background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
-            transform: scale(1.05);
+            border-color: #FF6B00;
+            color: #fff;
+            transform: scale(1.02);
         }
 
         .button-group button.active {
-            background: linear-gradient(135deg, #1A1A1D, #141414);
-            color: white;
+            background: #FF6B00;
+            color: #fff;
+            border-color: #FF6B00;
+            box-shadow: 0 0 20px rgba(255, 107, 0, 0.2);
         }
 
         .button-group button:not(.active) {
-            background: #ddd;
-            color: #333;
+            background: #0d0d0d;
+            color: #aaa;
+            border-color: #333;
+        }
+
+        .button-group button:not(.active):hover {
+            border-color: #FF6B00;
+            color: #fff;
         }
 
         button.calculate-btn {
-            background: linear-gradient(135deg, #1A1A1D, #141414);
+            background: linear-gradient(135deg, #FF6B00, #E85D00);
             color: white;
-            padding: 12px;
+            padding: 14px;
             border: none;
-            border-radius: 10px;
+            border-radius: 12px;
             width: 100%;
             cursor: pointer;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: background 0.3s ease;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 5px;
         }
 
         button.calculate-btn:hover {
-            background: linear-gradient(135deg, #1A1A1D, #141414);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 107, 0, 0.4);
         }
 
         .result {
             margin-top: 15px;
-            padding: 15px;
-            background: #f9f9f9;
-            border-radius: 10px;
+            padding: 20px;
+            background: #0d0d0d;
+            border-radius: 14px;
             text-align: center;
             font-size: 0.9rem;
             font-weight: 500;
-            color: #1a1a1a;
-            border: 2px dashed #ddd;
+            color: #cccccc;
+            border: 1px solid #333;
+        }
+
+        .result p {
+            margin: 8px 0;
+            display: flex;
+            justify-content: space-between;
+            padding: 4px 0;
+            border-bottom: 1px solid #1a1a1a;
+        }
+
+        .result p:last-child {
+            border-bottom: none;
+        }
+
+        .result p strong {
+            color: #fff;
+        }
+
+        .result p span {
+            color: #FF6B00;
+            font-weight: 600;
         }
 
         .destaque-total {
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: bold;
-            color: #008000;
-            padding: 10px;
+            color: #FF6B00;
+            padding: 10px 20px;
             border-radius: 12px;
-            margin-top: 8px;
+            margin-top: 5px;
             display: inline-block;
+            background: rgba(255, 107, 0, 0.08);
+            border: 1px solid rgba(255, 107, 0, 0.2);
         }
 
         .emoji {
             font-size: 1.2rem;
         }
 
+        .observacoes {
+            margin-top: 15px;
+            padding: 15px 20px;
+            background: #0d0d0d;
+            border-radius: 14px;
+            border: 1px solid #333;
+            color: #aaa;
+            font-size: 0.85rem;
+        }
+
+        .observacoes strong {
+            color: #fff;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .observacoes ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .observacoes ul li {
+            padding: 4px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .observacoes ul li::before {
+            content: '•';
+            color: #FF6B00;
+            position: absolute;
+            left: 0;
+        }
+
+        /* Admin Panel Styles */
         #adminPanel {
             display: none;
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.3);
+            background: #1a1a1a;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.8);
             z-index: 1000;
-            max-width: 90%;
-            max-height: 85vh;
+            max-width: 92%;
+            max-height: 88vh;
             overflow-y: auto;
             width: 100%;
+            border: 1px solid rgba(255, 107, 0, 0.15);
+        }
+
+        #adminPanel::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        #adminPanel::-webkit-scrollbar-track {
+            background: #0d0d0d;
+            border-radius: 10px;
+        }
+
+        #adminPanel::-webkit-scrollbar-thumb {
+            background: #FF6B00;
+            border-radius: 10px;
         }
 
         #adminPanel h2 {
-            color: #1a1a1a;
-            margin-bottom: 15px;
+            color: #fff;
+            margin-bottom: 20px;
             text-align: center;
-            font-size: 1.4rem;
+            font-size: 1.5rem;
+        }
+
+        #adminPanel h2 i {
+            color: #FF6B00;
+            margin-right: 10px;
         }
 
         .price-category {
             margin-bottom: 15px;
-            padding: 10px;
-            background: #f5f5f5;
-            border-radius: 10px;
+            padding: 15px;
+            background: #0d0d0d;
+            border-radius: 12px;
+            border: 1px solid #2a2a2a;
         }
 
         .price-category h3 {
-            color: #6a11cb;
-            margin-bottom: 8px;
-            font-size: 1.1rem;
+            color: #FF6B00;
+            margin-bottom: 10px;
+            font-size: 1rem;
+            font-weight: 600;
         }
 
         .price-range {
@@ -254,28 +364,43 @@
             align-items: center;
             margin-bottom: 6px;
             flex-wrap: wrap;
+            gap: 8px;
         }
 
         .price-range label {
             margin: 0;
-            width: 120px;
+            min-width: 120px;
             font-size: 0.85rem;
+            color: #aaa;
+        }
+
+        .price-range span {
+            color: #fff;
+            font-weight: 500;
         }
 
         .price-range input {
             width: 80px;
-            padding: 6px;
-            margin: 0 8px;
+            padding: 6px 10px;
+            background: #0a0a0a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            color: #fff;
             font-size: 0.85rem;
+        }
+
+        .price-range input:focus {
+            border-color: #FF6B00;
+            outline: none;
         }
 
         #adminBtn {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #2575fc, #6a11cb);
+            bottom: 25px;
+            right: 25px;
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(135deg, #FF6B00, #E85D00);
             color: white;
             border: none;
             border-radius: 50%;
@@ -283,18 +408,18 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 25px rgba(255, 107, 0, 0.4);
             z-index: 999;
-            transition: transform 0.3s ease, background 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         #adminBtn:hover {
-            transform: scale(1.1);
-            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            transform: scale(1.1) rotate(90deg);
+            box-shadow: 0 8px 35px rgba(255, 107, 0, 0.5);
         }
 
         #adminBtn i {
-            font-size: 1.2rem;
+            font-size: 1.4rem;
         }
 
         #adminOverlay {
@@ -304,47 +429,61 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(4px);
             z-index: 998;
         }
 
         .admin-actions {
             display: flex;
             justify-content: center;
-            gap: 10px;
-            margin-top: 15px;
+            gap: 12px;
+            margin-top: 20px;
+            flex-wrap: wrap;
         }
 
         .admin-actions button {
-            padding: 8px 15px;
+            padding: 10px 25px;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             cursor: pointer;
-            font-weight: 500;
+            font-weight: 600;
             font-size: 0.9rem;
+            transition: all 0.3s ease;
         }
 
         #savePricesBtn {
-            background: linear-gradient(135deg, #4CAF50, #2E7D32);
+            background: linear-gradient(135deg, #FF6B00, #E85D00);
             color: white;
         }
 
+        #savePricesBtn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 107, 0, 0.3);
+        }
+
         #closeAdminBtn {
-            background: linear-gradient(135deg, #f44336, #c62828);
-            color: white;
+            background: #333;
+            color: #fff;
+        }
+
+        #closeAdminBtn:hover {
+            background: #444;
         }
 
         .admin-settings {
             margin-top: 15px;
-            padding: 10px;
-            background: #f0f0f0;
-            border-radius: 10px;
+            padding: 15px;
+            background: #0d0d0d;
+            border-radius: 12px;
+            border: 1px solid #2a2a2a;
         }
 
         .admin-settings h3 {
-            margin-bottom: 10px;
-            color: #2575fc;
-            font-size: 1.1rem;
+            color: #FF6B00;
+            margin-bottom: 12px;
+            font-size: 1rem;
+            font-weight: 600;
         }
 
         .setting-item {
@@ -352,84 +491,141 @@
             align-items: center;
             margin-bottom: 8px;
             flex-wrap: wrap;
+            gap: 8px;
         }
 
         .setting-item label {
-            width: 180px;
+            min-width: 180px;
             margin: 0;
             font-size: 0.85rem;
+            color: #aaa;
         }
 
         .setting-item input {
             width: 80px;
-            padding: 6px;
+            padding: 6px 10px;
+            background: #0a0a0a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            color: #fff;
             font-size: 0.85rem;
+        }
+
+        .setting-item input:focus {
+            border-color: #FF6B00;
+            outline: none;
         }
 
         .button-management {
             margin-bottom: 15px;
-            padding: 10px;
-            background: #f5f5f5;
-            border-radius: 10px;
+            padding: 15px;
+            background: #0d0d0d;
+            border-radius: 12px;
+            border: 1px solid #2a2a2a;
         }
 
         .button-management h3 {
-            color: #6a11cb;
-            margin-bottom: 10px;
-            font-size: 1.1rem;
+            color: #FF6B00;
+            margin-bottom: 12px;
+            font-size: 1rem;
+            font-weight: 600;
         }
 
         .add-button-form {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 10px;
+            gap: 10px;
+            margin-bottom: 12px;
         }
 
         .add-button-form input[type="text"] {
             flex: 1;
-            min-width: 150px;
-            padding: 8px;
+            min-width: 180px;
+            padding: 10px 14px;
+            background: #0a0a0a;
+            border: 1px solid #333;
+            border-radius: 10px;
+            color: #fff;
             font-size: 0.85rem;
         }
 
+        .add-button-form input[type="text"]:focus {
+            border-color: #FF6B00;
+            outline: none;
+        }
+
         .add-button-form button {
-            padding: 8px 15px;
-            background: linear-gradient(135deg, #4CAF50, #2E7D32);
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #FF6B00, #E85D00);
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             cursor: pointer;
             font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .add-button-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 107, 0, 0.3);
         }
 
         .button-list {
-            max-height: 150px;
+            max-height: 180px;
             overflow-y: auto;
+        }
+
+        .button-list::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .button-list::-webkit-scrollbar-track {
+            background: #0a0a0a;
+            border-radius: 10px;
+        }
+
+        .button-list::-webkit-scrollbar-thumb {
+            background: #FF6B00;
+            border-radius: 10px;
         }
 
         .button-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 8px;
-            border-bottom: 1px solid #ddd;
+            padding: 10px 14px;
+            border-bottom: 1px solid #2a2a2a;
             cursor: move;
+            color: #ccc;
         }
 
         .button-item.dragging {
-            opacity: 0.5;
-            background: #e0e0e0;
+            opacity: 0.4;
+            background: #2a2a2a;
+        }
+
+        .button-item:hover {
+            background: #1a1a1a;
+        }
+
+        .button-item span {
+            font-size: 0.9rem;
         }
 
         .button-item button {
-            padding: 5px 10px;
-            background: linear-gradient(135deg, #f44336, #c62828);
-            color: white;
+            padding: 5px 14px;
+            background: #333;
+            color: #fff;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .button-item button:hover {
+            background: #E85D00;
         }
 
         @keyframes fadeIn {
@@ -452,6 +648,16 @@
             }
         }
 
+        #btnCopiar {
+            margin-top: 12px;
+            background: linear-gradient(135deg, #FF6B00, #E85D00);
+        }
+
+        #btnCopiar:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 107, 0, 0.3);
+        }
+
         /* Mobile-specific styles */
         @media (max-width: 768px) {
             body {
@@ -464,18 +670,16 @@
             }
 
             .form-section, .result-section {
-                padding: 15px;
-                border-radius: 15px;
+                padding: 18px;
+                border-radius: 16px;
             }
 
             h1 {
-                font-size: 1.5rem;
-                margin-bottom: 10px;
+                font-size: 1.4rem;
             }
 
             h2 {
                 font-size: 1rem;
-                margin: 8px 0;
             }
 
             label {
@@ -483,29 +687,29 @@
             }
 
             input[type="number"], input[type="text"] {
-                padding: 8px;
-                font-size: 0.8rem;
+                padding: 10px 12px;
+                font-size: 0.85rem;
             }
 
             .button-group-material button, .button-group button {
-                min-width: 120px;
+                min-width: 100%;
                 padding: 10px;
-                font-size: 0.8rem;
-                height: 40px;
+                font-size: 0.78rem;
+                height: 42px;
             }
 
             button.calculate-btn {
-                padding: 10px;
-                font-size: 0.8rem;
+                padding: 12px;
+                font-size: 0.85rem;
             }
 
             .result {
                 font-size: 0.8rem;
-                padding: 10px;
+                padding: 14px;
             }
 
             .destaque-total {
-                font-size: 1.2rem;
+                font-size: 1.4rem;
             }
 
             .emoji {
@@ -513,13 +717,14 @@
             }
 
             #adminPanel {
-                width: 95%;
-                padding: 15px;
-                max-height: 90vh;
+                width: 96%;
+                padding: 18px;
+                max-height: 92vh;
                 top: 0;
                 left: 0;
                 transform: none;
                 border-radius: 0;
+                max-width: 100%;
             }
 
             #adminPanel h2 {
@@ -527,22 +732,23 @@
             }
 
             .price-category h3, .admin-settings h3, .button-management h3 {
-                font-size: 1rem;
+                font-size: 0.95rem;
             }
 
             .price-range label, .setting-item label {
-                width: 100%;
-                margin-bottom: 5px;
+                min-width: 100%;
+                margin-bottom: 4px;
             }
 
             .price-range input, .setting-item input {
                 width: 100%;
-                margin: 5px 0;
+                margin: 4px 0;
             }
 
             .admin-actions button {
-                padding: 8px 12px;
-                font-size: 0.8rem;
+                padding: 10px 20px;
+                font-size: 0.85rem;
+                flex: 1;
             }
 
             .add-button-form input[type="text"] {
@@ -551,48 +757,48 @@
 
             .add-button-form button {
                 width: 100%;
-                padding: 8px;
+                padding: 10px;
             }
 
             #adminBtn {
-                width: 45px;
-                height: 45px;
+                width: 50px;
+                height: 50px;
                 bottom: 15px;
                 right: 15px;
             }
 
             #adminBtn i {
-                font-size: 1rem;
+                font-size: 1.2rem;
             }
 
             .logo {
-                max-width: 250px;
+                max-width: 280px;
             }
         }
 
         @media (max-width: 480px) {
             .logo {
-                max-width: 200px;
+                max-width: 220px;
             }
 
             h1 {
-                font-size: 1.3rem;
+                font-size: 1.2rem;
             }
 
             h2 {
-                font-size: 0.9rem;
+                font-size: 0.85rem;
             }
 
             .button-group-material button, .button-group button {
-                min-width: 100%;
-                font-size: 0.75rem;
+                font-size: 0.7rem;
                 padding: 8px;
-                height: 35px;
+                height: 38px;
+                min-width: 100%;
             }
 
             button.calculate-btn {
-                font-size: 0.75rem;
-                padding: 8px;
+                font-size: 0.8rem;
+                padding: 10px;
             }
 
             .result {
@@ -600,7 +806,8 @@
             }
 
             .destaque-total {
-                font-size: 1rem;
+                font-size: 1.2rem;
+                padding: 8px 14px;
             }
         }
     </style>
@@ -608,13 +815,13 @@
 <body>
     <div id="adminOverlay"></div>
     <div id="adminPanel">
-        <h2>Painel de Administração - Configurações</h2>
+        <h2><i class="fas fa-cog"></i> Painel de Administração</h2>
         
         <div class="button-management">
-            <h3>Gerenciar Tipos de Impressão</h3>
+            <h3><i class="fas fa-tags"></i> Gerenciar Tipos de Impressão</h3>
             <div class="add-button-form">
                 <input type="text" id="newButtonName" placeholder="Nome do novo tipo (ex: Impressão Especial)">
-                <button onclick="addNewButtonType()">Adicionar Tipo</button>
+                <button onclick="addNewButtonType()"><i class="fas fa-plus"></i> Adicionar</button>
             </div>
             <div class="button-list" id="buttonList"></div>
         </div>
@@ -622,12 +829,16 @@
         <div id="priceEditor"></div>
         
         <div class="admin-settings">
-            <h3>Configurações Gerais</h3>
+            <h3><i class="fas fa-sliders-h"></i> Configurações Gerais</h3>
             <div class="setting-item">
                 <label>Desconto Frente e Verso (%):</label>
                 <input type="number" id="frenteVersoDiscount" min="0" max="100" step="1">
             </div>
-            <h3>Preços de Encadernação</h3>
+            <div class="setting-item">
+                <label>Taxa Frente/Verso Papéis Especiais (R$):</label>
+                <input type="number" id="papelEspecialFrenteVerso" min="0" step="0.01" value="2.00">
+            </div>
+            <h3 style="margin-top: 15px;"><i class="fas fa-book"></i> Preços de Encadernação</h3>
             <div class="setting-item">
                 <label>Até 20 folhas:</label>
                 <input type="number" id="encad20" min="0" step="0.01">
@@ -655,8 +866,8 @@
         </div>
         
         <div class="admin-actions">
-            <button id="savePricesBtn" onclick="savePrices()">Salvar Alterações</button>
-            <button id="closeAdminBtn" onclick="hideAdminPanel()">Fechar</button>
+            <button id="savePricesBtn" onclick="savePrices()"><i class="fas fa-save"></i> Salvar</button>
+            <button id="closeAdminBtn" onclick="hideAdminPanel()"><i class="fas fa-times"></i> Fechar</button>
         </div>
     </div>
 
@@ -669,113 +880,102 @@
     </header>
     <div class="container">
         <div class="form-section">
-            <h1>Impressões / Cópias</h1>
-            <label for="quantidade">Quantidade:</label>
+            <h1><i class="fas fa-print"></i> Impressões / Cópias</h1>
+            <label for="quantidade"><i class="fas fa-sort-numeric-up"></i> Quantidade:</label>
             <input type="number" id="quantidade" min="1" placeholder="Digite a quantidade">
 
-            <label>Tipo de impressão:</label>
+            <label><i class="fas fa-file-alt"></i> Tipo de impressão:</label>
             <div class="button-group-material" id="buttonGroupMaterial"></div>
 
-            <h2>Outras informações:</h2>
+            <h2><i class="fas fa-cog"></i> Outras informações:</h2>
             <div class="button-group">
-                <button id="frenteVersoBtn" onclick="toggleFrenteVerso()">Frente e Verso</button>
-                <button id="encadernacaoBtn" onclick="toggleEncadernacao()">Encadernação</button>
+                <button id="frenteVersoBtn" onclick="toggleFrenteVerso()"><i class="fas fa-arrows-alt-h"></i> Frente e Verso</button>
+                <button id="encadernacaoBtn" onclick="toggleEncadernacao()"><i class="fas fa-book"></i> Encadernação</button>
             </div>
 
-            <button class="calculate-btn" onclick="atualizarTotal()">Calcular</button>
+            <button class="calculate-btn" onclick="atualizarTotal()"><i class="fas fa-calculator"></i> Calcular</button>
         </div>
 
         <div class="result-section">
-            <h1>Resultado</h1>
+            <h1><i class="fas fa-chart-line"></i> Resultado</h1>
             <div class="result" id="resultado" style="display: none;">
-                <p><strong>Quantidade:</strong> <span id="resultadoQuantidade"></span></p>
-                <p><strong>Tipo:</strong> <span id="resultadoTipo"></span></p>
-                <p><strong>Frente e Verso:</strong> <span id="resultadoFrenteVerso"></span></p>
-                <p><strong>Encadernação:</strong> <span id="resultadoEncadernacao"></span></p>
-                <p><strong>Valor por Impressão:</strong> <span id="resultadoValorUnitario"></span></p>
-                <p><strong>Total:</strong> <span id="resultadoTotal"></span></p>
+                <p><strong><i class="fas fa-sort-numeric-up"></i> Quantidade:</strong> <span id="resultadoQuantidade"></span></p>
+                <p><strong><i class="fas fa-file-alt"></i> Tipo:</strong> <span id="resultadoTipo"></span></p>
+                <p><strong><i class="fas fa-arrows-alt-h"></i> Frente e Verso:</strong> <span id="resultadoFrenteVerso"></span></p>
+                <p><strong><i class="fas fa-book"></i> Encadernação:</strong> <span id="resultadoEncadernacao"></span></p>
+                <p><strong><i class="fas fa-dollar-sign"></i> Valor por Impressão:</strong> <span id="resultadoValorUnitario"></span></p>
+                <p><strong><i class="fas fa-coins"></i> Total:</strong> <span id="resultadoTotal"></span></p>
             </div>
 
             <div class="observacoes" id="observacoes" style="display: none;">
-                <strong>Observações:</strong>
+                <strong><i class="fas fa-info-circle"></i> Observações:</strong>
                 <ul id="observacoesLista"></ul>
             </div>
 
-            <button id="btnCopiar" class="calculate-btn" onclick="copiarOrcamento()" style="display: none;">Copiar Orçamento</button>
+            <button id="btnCopiar" class="calculate-btn" onclick="copiarOrcamento()" style="display: none;"><i class="fas fa-copy"></i> Copiar Orçamento</button>
         </div>
     </div>
 
     <script>
         const ADMIN_PASSWORD = "admin123";
         const DEFAULT_PRICES = {
-            preto_branco: [
-                { max: 10, price: 0.50 },
-                { max: 30, price: 0.45 },
-                { max: 60, price: 0.40 },
-                { max: 100, price: 0.35 },
-                { max: 200, price: 0.30 },
-                { max: Infinity, price: 0.28 }
+            a4_preto_branco: [
+                { max: 1, price: 1.00 },
+                { max: 30, price: 0.50 },
+                { max: 60, price: 0.45 },
+                { max: 100, price: 0.40 },
+                { max: 200, price: 0.35 },
+                { max: Infinity, price: 0.30 }
             ],
-            copia_preto_branco: [
-                { max: 10, price: 0.40 },
-                { max: 30, price: 0.35 },
-                { max: 60, price: 0.30 },
-                { max: 100, price: 0.25 },
-                { max: 200, price: 0.20 },
-                { max: Infinity, price: 0.18 }
-            ],
-            copia_colorida: [
-                { max: 10, price: 0.90 },
-                { max: 30, price: 0.85 },
-                { max: 60, price: 0.80 },
-                { max: 100, price: 0.75 },
-                { max: 200, price: 0.70 },
-                { max: Infinity, price: 0.65 }
-            ],
-            a3_colorido: [
-                { max: 10, price: 3.50 },
-                { max: 30, price: 3.20 },
-                { max: 60, price: 2.80 },
-                { max: 100, price: 2.00 },
-                { max: 200, price: 2.00 },
-                { max: Infinity, price: 2.00 }
-            ],
-            colorida_pigmentada: [
-                { max: 10, price: 1.00 },
+            a4_colorido_pigmentada: [
+                { max: 10, price: 1.50 },
                 { max: 30, price: 0.95 },
                 { max: 60, price: 0.90 },
                 { max: 100, price: 0.85 },
                 { max: 200, price: 0.80 },
                 { max: Infinity, price: 0.75 }
             ],
-            colorida_laser: [
-                { max: 10, price: 1.50 },
-                { max: 30, price: 1.40 },
-                { max: 60, price: 1.30 },
-                { max: 100, price: 1.20 },
-                { max: 200, price: 1.20 },
-                { max: Infinity, price: 1.20 }
+            a4_colorido_laser: [
+                { max: 10, price: 2.00 },
+                { max: 30, price: 1.80 },
+                { max: 100, price: 1.60 },
+                { max: Infinity, price: 1.40 }
             ],
-            couche: [
-                { max: 10, price: 3.00 },
-                { max: 30, price: 2.95 },
-                { max: 60, price: 2.90 },
-                { max: 100, price: 2.85 },
-                { max: 200, price: 2.80 },
-                { max: Infinity, price: 2.75 }
+            a3_colorido: [
+                { max: 10, price: 4.50 },
+                { max: 30, price: 4.25 },
+                { max: 100, price: 4.00 },
+                { max: Infinity, price: 3.90 }
             ],
-            cartao: [
-                { max: 10, price: 2.80 },
-                { max: 30, price: 2.75 },
-                { max: 60, price: 2.70 },
-                { max: 100, price: 2.65 },
-                { max: 200, price: 2.60 },
-                { max: Infinity, price: 2.50 }
+            papel_couche_250g: [
+                { max: 30, price: 4.00 },
+                { max: 100, price: 3.70 },
+                { max: Infinity, price: 3.50 }
+            ],
+            papel_cartao_240g: [
+                { max: 30, price: 3.50 },
+                { max: 100, price: 3.20 },
+                { max: Infinity, price: 3.00 }
+            ],
+            papel_couche_115g: [
+                { max: 30, price: 3.00 },
+                { max: 100, price: 2.90 },
+                { max: Infinity, price: 2.60 }
+            ],
+            papel_cartao_180g: [
+                { max: 30, price: 3.00 },
+                { max: 100, price: 2.90 },
+                { max: Infinity, price: 2.60 }
+            ],
+            digitalizacao_scanner: [
+                { max: 1, price: 1.00 },
+                { max: Infinity, price: 0.50 }
             ]
         };
 
         const DEFAULT_SETTINGS = {
             frenteVersoDiscount: 10,
+            papelEspecialFrenteVerso: 2.00,
             encadernacao: {
                 encad20: 3.00,
                 encad50: 4.00,
@@ -785,6 +985,9 @@
                 encad400: 10.00
             }
         };
+
+        // Tipos que NÃO recebem desconto de 10% no frente e verso (papéis especiais)
+        const PAPEIS_ESPECIAIS = ['papel_couche_250g', 'papel_cartao_240g', 'papel_couche_115g', 'papel_cartao_180g'];
 
         let frenteVersoAtivo = false;
         let encadernacaoAtivo = false;
@@ -829,11 +1032,9 @@
                 inputs.forEach((input, index) => {
                     let max;
                     if (index < inputs.length - 1) {
-                        // Para intervalos normais, pega do data-max
                         max = parseInt(input.getAttribute('data-max')) || 
                               (currentPrices[type] && currentPrices[type][index] ? currentPrices[type][index].max : 200);
                     } else {
-                        // Último intervalo é sempre infinito
                         max = Infinity;
                     }
                     currentPrices[type].push({
@@ -843,19 +1044,20 @@
                 });
             });
 
-            currentSettings.frenteVersoDiscount = parseFloat(document.getElementById('frenteVersoDiscount').value);
+            currentSettings.frenteVersoDiscount = parseFloat(document.getElementById('frenteVersoDiscount').value) || 0;
+            currentSettings.papelEspecialFrenteVerso = parseFloat(document.getElementById('papelEspecialFrenteVerso').value) || 0;
             currentSettings.encadernacao = {
-                encad20: parseFloat(document.getElementById('encad20').value),
-                encad50: parseFloat(document.getElementById('encad50').value),
-                encad100: parseFloat(document.getElementById('encad100').value),
-                encad200: parseFloat(document.getElementById('encad200').value),
-                encad300: parseFloat(document.getElementById('encad300').value),
-                encad400: parseFloat(document.getElementById('encad400').value)
+                encad20: parseFloat(document.getElementById('encad20').value) || 0,
+                encad50: parseFloat(document.getElementById('encad50').value) || 0,
+                encad100: parseFloat(document.getElementById('encad100').value) || 0,
+                encad200: parseFloat(document.getElementById('encad200').value) || 0,
+                encad300: parseFloat(document.getElementById('encad300').value) || 0,
+                encad400: parseFloat(document.getElementById('encad400').value) || 0
             };
 
             localStorage.setItem('printPrices', JSON.stringify(currentPrices));
             localStorage.setItem('printSettings', JSON.stringify(currentSettings));
-            alert('Configurações salvas com sucesso!');
+            alert('✅ Configurações salvas com sucesso!');
             renderButtonGroup();
             hideAdminPanel();
         }
@@ -863,9 +1065,20 @@
         function renderButtonGroup() {
             const buttonGroup = document.getElementById('buttonGroupMaterial');
             buttonGroup.innerHTML = '';
+            const displayNames = {
+                'a4_preto_branco': 'A4 Preto e Branco',
+                'a4_colorido_pigmentada': 'A4 Colorido Pigmentada',
+                'a4_colorido_laser': 'A4 Colorido Laser',
+                'a3_colorido': 'A3 Colorido',
+                'papel_couche_250g': 'Papel Couchê 250g',
+                'papel_cartao_240g': 'Papel Cartão 240g',
+                'papel_couche_115g': 'Papel Couchê 115g',
+                'papel_cartao_180g': 'Papel Cartão 180g',
+                'digitalizacao_scanner': 'Digitalização (Scanner)'
+            };
             for (const type of Object.keys(currentPrices)) {
                 const button = document.createElement('button');
-                const displayName = type.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                const displayName = displayNames[type] || type.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
                 button.textContent = displayName;
                 button.setAttribute('data-type', type);
                 button.onclick = () => selecionarTipo(type);
@@ -887,13 +1100,13 @@
                 return;
             }
 
-            currentPrices[typeId] = JSON.parse(JSON.stringify(DEFAULT_PRICES.preto_branco));
+            currentPrices[typeId] = JSON.parse(JSON.stringify(DEFAULT_PRICES.a4_preto_branco));
             localStorage.setItem('printPrices', JSON.stringify(currentPrices));
             nameInput.value = '';
             renderButtonGroup();
             loadPriceEditor();
             loadButtonList();
-            alert(`Tipo "${name}" adicionado com sucesso!`);
+            alert(`✅ Tipo "${name}" adicionado com sucesso!`);
         }
 
         function removeButtonType(type) {
@@ -917,15 +1130,26 @@
         function loadButtonList() {
             const buttonList = document.getElementById('buttonList');
             buttonList.innerHTML = '';
+            const displayNames = {
+                'a4_preto_branco': 'A4 Preto e Branco',
+                'a4_colorido_pigmentada': 'A4 Colorido Pigmentada',
+                'a4_colorido_laser': 'A4 Colorido Laser',
+                'a3_colorido': 'A3 Colorido',
+                'papel_couche_250g': 'Papel Couchê 250g',
+                'papel_cartao_240g': 'Papel Cartão 240g',
+                'papel_couche_115g': 'Papel Couchê 115g',
+                'papel_cartao_180g': 'Papel Cartão 180g',
+                'digitalizacao_scanner': 'Digitalização (Scanner)'
+            };
             for (const type of Object.keys(currentPrices)) {
                 const item = document.createElement('div');
                 item.className = 'button-item';
                 item.setAttribute('draggable', 'true');
                 item.setAttribute('data-type', type);
-                const displayName = type.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                const displayName = displayNames[type] || type.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
                 item.innerHTML = `
-                    <span>${displayName}</span>
-                    <button onclick="removeButtonType('${type}')">Remover</button>
+                    <span><i class="fas fa-grip-vertical" style="color:#555;margin-right:8px;"></i> ${displayName}</span>
+                    <button onclick="removeButtonType('${type}')"><i class="fas fa-trash"></i></button>
                 `;
                 buttonList.appendChild(item);
             }
@@ -972,8 +1196,10 @@
                     }
                 });
 
-                // Add touch support for drag-and-drop
+                // Touch support for drag-and-drop
+                let touchStartY = 0;
                 item.addEventListener('touchstart', (e) => {
+                    touchStartY = e.touches[0].clientY;
                     item.classList.add('dragging');
                     e.target.setAttribute('data-dragging', 'true');
                 });
@@ -982,16 +1208,17 @@
                     e.preventDefault();
                     const touch = e.touches[0];
                     const target = document.elementFromPoint(touch.clientX, touch.clientY);
-                    if (target && target.classList.contains('button-item')) {
-                        target.style.background = '#e0e0e0';
+                    if (target && target.classList.contains('button-item') && target !== item) {
+                        target.style.background = '#2a2a2a';
                     }
                 });
 
                 item.addEventListener('touchend', (e) => {
                     item.classList.remove('dragging');
-                    const target = document.elementFromPoint(e.changedTouches[0].clientX, e.changedTouches[0].clientY);
+                    const touch = e.changedTouches[0];
+                    const target = document.elementFromPoint(touch.clientX, touch.clientY);
                     item.removeAttribute('data-dragging');
-                    if (target && target.classList.contains('button-item')) {
+                    if (target && target.classList.contains('button-item') && target !== item) {
                         target.style.background = '';
                         const draggedType = item.getAttribute('data-type');
                         const targetType = target.getAttribute('data-type');
@@ -1022,7 +1249,7 @@
                 loadSettingsEditor();
                 loadButtonList();
             } else if (password !== null) {
-                alert('Senha incorreta!');
+                alert('❌ Senha incorreta!');
             }
         }
 
@@ -1034,12 +1261,23 @@
         function loadPriceEditor() {
             const editor = document.getElementById('priceEditor');
             editor.innerHTML = '';
+            const displayNames = {
+                'a4_preto_branco': 'A4 Preto e Branco',
+                'a4_colorido_pigmentada': 'A4 Colorido Pigmentada',
+                'a4_colorido_laser': 'A4 Colorido Laser',
+                'a3_colorido': 'A3 Colorido',
+                'papel_couche_250g': 'Papel Couchê 250g',
+                'papel_cartao_240g': 'Papel Cartão 240g',
+                'papel_couche_115g': 'Papel Couchê 115g',
+                'papel_cartao_180g': 'Papel Cartão 180g',
+                'digitalizacao_scanner': 'Digitalização (Scanner)'
+            };
             for (const [type, ranges] of Object.entries(currentPrices)) {
                 const categoryDiv = document.createElement('div');
                 categoryDiv.className = 'price-category';
                 categoryDiv.setAttribute('data-type', type);
-                const typeName = type.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-                categoryDiv.innerHTML = `<h3>${typeName}</h3>`;
+                const typeName = displayNames[type] || type.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                categoryDiv.innerHTML = `<h3><i class="fas fa-tag"></i> ${typeName}</h3>`;
                 for (let i = 0; i < ranges.length; i++) {
                     const range = ranges[i];
                     const rangeDiv = document.createElement('div');
@@ -1066,6 +1304,7 @@
 
         function loadSettingsEditor() {
             document.getElementById('frenteVersoDiscount').value = currentSettings.frenteVersoDiscount;
+            document.getElementById('papelEspecialFrenteVerso').value = currentSettings.papelEspecialFrenteVerso || 2.00;
             document.getElementById('encad20').value = currentSettings.encadernacao.encad20;
             document.getElementById('encad50').value = currentSettings.encadernacao.encad50;
             document.getElementById('encad100').value = currentSettings.encadernacao.encad100;
@@ -1091,7 +1330,7 @@
             const quantidadeInput = document.getElementById('quantidade');
             let quantidade = Number(quantidadeInput.value);
             if (frenteVersoAtivo && (quantidade < 2 || !quantidade)) {
-                alert('Ao selecionar Frente e Verso, a quantidade mínima é 2.');
+                alert('⚠️ Ao selecionar Frente e Verso, a quantidade mínima é 2.');
                 quantidadeInput.value = 2;
             }
             atualizarTotal();
@@ -1103,20 +1342,21 @@
             atualizarTotal();
         }
 
+        function isPapelEspecial(tipo) {
+            return PAPEIS_ESPECIAIS.includes(tipo);
+        }
+
         function calcularPreco(qtd, type) {
             if (!currentPrices[type]) return 0;
             
-            // Ordena os intervalos por max (apenas para segurança)
             const ranges = [...currentPrices[type]].sort((a, b) => a.max - b.max);
             
-            // Procura o intervalo correto
             for (const range of ranges) {
                 if (qtd <= range.max || range.max === Infinity) {
                     return range.price;
                 }
             }
             
-            // Se não encontrou, retorna o preço do último intervalo
             if (ranges.length > 0) {
                 return ranges[ranges.length - 1].price;
             }
@@ -1138,27 +1378,33 @@
             const observacoesLista = document.getElementById('observacoesLista');
             observacoesLista.innerHTML = '';
             let observacoes = [];
-            if (tipo === 'couche') {
+            if (tipo === 'papel_couche_250g' || tipo === 'papel_couche_115g') {
                 observacoes = [
-                    '* Papel Couchê Brilho 250g/m².',
-                    '* Formato de impressão: Super A4 (22x32cm).',
-                    '* Envie seu arquivo e retire sua impressão no balcão.',
-                    '* Para grandes volumes, solicitamos 50% de pagamento antecipado.'
+                    'Papel Couchê 250g - Brilho.',
+                    'Formato de impressão: Super A4 (22x32cm).',
+                    'Envie seu arquivo e retire sua impressão no balcão.',
+                    'Para grandes volumes, solicitamos 50% de pagamento antecipado.'
                 ];
-            } else if (tipo === 'cartao') {
+            } else if (tipo === 'papel_cartao_240g' || tipo === 'papel_cartao_180g') {
                 observacoes = [
-                    '* Papel Cartão Fosco 240g/m².',
-                    '* Formato de impressão: Super A4 (22x32cm).',
-                    '* Envia seu arquivo e retire sua impressão no balcão.',
-                    '* Para grandes volumes, solicitamos 50% de pagamento antecipado.'
+                    'Papel Cartão 240g - Fosco.',
+                    'Formato de impressão: Super A4 (22x32cm).',
+                    'Envie seu arquivo e retire sua impressão no balcão.',
+                    'Para grandes volumes, solicitamos 50% de pagamento antecipado.'
+                ];
+            } else if (tipo === 'digitalizacao_scanner') {
+                observacoes = [
+                    'Digitalização de documentos.',
+                    'Arquivos enviados em formato PDF ou imagem.',
+                    'Entrega por e-mail ou pendrive.'
                 ];
             } else {
                 observacoes = [
-                    '* Papel Sulfite 75g/m².',
-                    '* Não realizamos cópias de livros físicos brochura de grande volume.',
-                    '* Formato de impressão: A4.',
-                    '* Envie seu arquivo e retire sua impressão no balcão.',
-                    '* Para grandes volumes, solicitamos 50% de pagamento antecipado.'
+                    'Papel Sulfite 75g/m².',
+                    'Não realizamos cópias de livros físicos brochura de grande volume.',
+                    'Formato de impressão: A4.',
+                    'Envie seu arquivo e retire sua impressão no balcão.',
+                    'Para grandes volumes, solicitamos 50% de pagamento antecipado.'
                 ];
             }
             observacoes.forEach(obs => {
@@ -1172,45 +1418,73 @@
             const quantidadeInput = document.getElementById('quantidade');
             let quantidade = Number(quantidadeInput.value);
             
-            // Verifica se é um número válido
             if (isNaN(quantidade) || quantidade < 1) {
-                alert('A quantidade mínima de impressões/cópias é 1.');
+                alert('⚠️ A quantidade mínima de impressões/cópias é 1.');
                 quantidadeInput.value = 1;
                 quantidade = 1;
             }
             
-            // Limita a quantidade para evitar problemas com números muito grandes
             if (quantidade > 9999999) {
-                alert('Quantidade muito grande. Por favor, entre em contato para orçamentos com mais de 10 milhões de páginas.');
+                alert('⚠️ Quantidade muito grande. Por favor, entre em contato para orçamentos com mais de 10 milhões de páginas.');
                 quantidadeInput.value = 10000000;
                 quantidade = 10000000;
             }
             
             if (frenteVersoAtivo && quantidade < 2) {
-                alert('Ao selecionar Frente e Verso, a quantidade mínima é 2.');
+                alert('⚠️ Ao selecionar Frente e Verso, a quantidade mínima é 2.');
                 quantidadeInput.value = 2;
                 quantidade = 2;
             }
             
             let folhas = frenteVersoAtivo ? Math.ceil(quantidade / 2) : quantidade;
             let valorUnitario = tipoSelecionado ? calcularPreco(quantidade, tipoSelecionado) : 0;
-            let totalImpressao = valorUnitario * quantidade;
             
-            if (frenteVersoAtivo) {
-                const discount = currentSettings.frenteVersoDiscount / 100;
-                totalImpressao *= (1 - discount);
+            // Para digitalização: primeira = 1.00, seguintes = 0.50
+            let totalImpressao = 0;
+            if (tipoSelecionado === 'digitalizacao_scanner') {
+                if (quantidade === 1) {
+                    totalImpressao = 1.00;
+                } else if (quantidade >= 2) {
+                    totalImpressao = 1.00 + (quantidade - 1) * 0.50;
+                }
+                valorUnitario = totalImpressao / quantidade;
+            } else {
+                totalImpressao = valorUnitario * quantidade;
+                
+                // Verifica se é papel especial (sem desconto de 8%)
+                if (frenteVersoAtivo && isPapelEspecial(tipoSelecionado)) {
+                    // Papéis especiais: adiciona R$2.00 por página (folha) no frente e verso
+                    const taxaFrenteVerso = currentSettings.papelEspecialFrenteVerso || 2.00;
+                    totalImpressao += taxaFrenteVerso * folhas;
+                } else if (frenteVersoAtivo) {
+                    // Demais tipos: aplica desconto de 10%
+                    const discount = currentSettings.frenteVersoDiscount / 100;
+                    totalImpressao *= (1 - discount);
+                }
             }
             
             let custoEncadernacao = 0;
-            if (encadernacaoAtivo) {
+            if (encadernacaoAtivo && tipoSelecionado !== 'digitalizacao_scanner') {
                 custoEncadernacao = calcularEncadernacao(folhas);
             }
             
             const total = totalImpressao + custoEncadernacao;
             
+            const displayNames = {
+                'a4_preto_branco': 'A4 Preto e Branco',
+                'a4_colorido_pigmentada': 'A4 Colorido Pigmentada',
+                'a4_colorido_laser': 'A4 Colorido Laser',
+                'a3_colorido': 'A3 Colorido',
+                'papel_couche_250g': 'Papel Couchê 250g',
+                'papel_cartao_240g': 'Papel Cartão 240g',
+                'papel_couche_115g': 'Papel Couchê 115g',
+                'papel_cartao_180g': 'Papel Cartão 180g',
+                'digitalizacao_scanner': 'Digitalização (Scanner)'
+            };
+            
             document.getElementById('resultadoQuantidade').innerText = quantidade;
             document.getElementById('resultadoTipo').innerText = tipoSelecionado ? 
-                document.querySelector(`.button-group-material button.active`)?.innerText : 'Não selecionado';
+                (displayNames[tipoSelecionado] || document.querySelector(`.button-group-material button.active`)?.innerText || 'Não selecionado') : 'Não selecionado';
             document.getElementById('resultadoFrenteVerso').innerText = frenteVersoAtivo ? 'Sim' : 'Não';
             document.getElementById('resultadoEncadernacao').innerText = encadernacaoAtivo ? 'Sim' : 'Não';
             document.getElementById('resultadoValorUnitario').innerText = tipoSelecionado ? `R$ ${valorUnitario.toFixed(2)}` : 'R$ 0.00';
@@ -1231,7 +1505,7 @@
 
         function copiarOrcamento() {
             if (!tipoSelecionado) {
-                alert('Selecione um tipo de impressão antes de copiar o orçamento.');
+                alert('⚠️ Selecione um tipo de impressão antes de copiar o orçamento.');
                 return;
             }
             const quantidade = document.getElementById('resultadoQuantidade').innerText;
@@ -1239,15 +1513,15 @@
             const frenteVerso = document.getElementById('resultadoFrenteVerso').innerText;
             const encadernacao = document.getElementById('resultadoEncadernacao').innerText;
             const valorUnitario = document.getElementById('resultadoValorUnitario').innerText;
-            const total = document.getElementById('resultadoTotal').innerText;
-            const observacoes = document.getElementById('observacoes').innerText;
-            const textoCompleto = `Quantidade: ${quantidade}\nTipo: ${tipo}\nFrente e Verso: ${frenteVerso}\nEncadernação: ${encadernacao}\nValor por Impressão: ${valorUnitario}\n\nTotal: ${total}\n\n${observacoes}`;
+            const total = document.getElementById('resultadoTotal').innerText.replace(/[✅⚠️]/g, '').trim();
+            const observacoes = document.getElementById('observacoes').innerText.replace(/Observações:/, '').trim();
+            const textoCompleto = `📄 ORÇAMENTO - Impressões & Cópias\n━━━━━━━━━━━━━━━━━━━━━━━━━\n\n📌 Quantidade: ${quantidade}\n📌 Tipo: ${tipo}\n📌 Frente e Verso: ${frenteVerso}\n📌 Encadernação: ${encadernacao}\n📌 Valor por Impressão: ${valorUnitario}\n\n💰 TOTAL: ${total}\n\n📋 Observações:\n${observacoes}\n━━━━━━━━━━━━━━━━━━━━━━━━━`;
             navigator.clipboard.writeText(textoCompleto)
                 .then(() => {
-                    alert('Orçamento copiado para a área de transferência!');
+                    alert('✅ Orçamento copiado para a área de transferência!');
                 })
                 .catch(() => {
-                    alert('Erro ao copiar o orçamento.');
+                    alert('❌ Erro ao copiar o orçamento.');
                 });
         }
 
